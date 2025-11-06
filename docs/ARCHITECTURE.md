@@ -1,43 +1,55 @@
 # Architecture Stack-IA
 
+<div align="center">
+
+![Version](https://img.shields.io/badge/version-1.0-blue.svg)
+![Docker](https://img.shields.io/badge/docker-compose-2496ED?logo=docker&logoColor=white)
+![Traefik](https://img.shields.io/badge/traefik-v2.10-24A1C1?logo=traefikproxy&logoColor=white)
+![GPU](https://img.shields.io/badge/NVIDIA-CUDA-76B900?logo=nvidia&logoColor=white)
+
+</div>
+
+---
+
 ## Vue d'ensemble
 
 Stack-IA est une architecture microservices complète pour l'intelligence artificielle locale, orchestrée via Docker Compose et Traefik.
 
 ```mermaid
+%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#326ce5','primaryTextColor':'#fff','primaryBorderColor':'#fff','lineColor':'#666','secondaryColor':'#ff6b6b','tertiaryColor':'#76b900'}}}%%
 graph TB
-    subgraph "Couche Accès - Port 80/443"
-        TRAEFIK[Traefik Reverse Proxy]
+    subgraph LAYER1["<b>🌐 Couche Accès - Port 80/443</b>"]
+        TRAEFIK["<b>Traefik</b><br/>Reverse Proxy<br/>🔀"]
     end
     
-    subgraph "Couche Interface Utilisateur"
-        WEBUI[Open WebUI<br/>Interface Chat IA]
-        ANYTHING[AnythingLLM<br/>RAG & Documents]
-        N8N[n8n<br/>Workflows & Automation]
-        ADMINER[Adminer<br/>DB Management]
+    subgraph LAYER2["<b>💻 Couche Interface Utilisateur</b>"]
+        WEBUI["<b>Open WebUI</b><br/>Chat IA<br/>💬"]
+        ANYTHING["<b>AnythingLLM</b><br/>RAG & Docs<br/>📚"]
+        N8N["<b>n8n</b><br/>Automation<br/>⚙️"]
+        ADMINER["<b>Adminer</b><br/>DB Manager<br/>🗄️"]
     end
     
-    subgraph "Couche IA & Traitement"
-        OLLAMA[Ollama<br/>LLM Engine]
-        QDRANT[Qdrant<br/>Vector Database]
+    subgraph LAYER3["<b>🤖 Couche IA & Traitement</b>"]
+        OLLAMA["<b>Ollama</b><br/>LLM Engine<br/>🧠"]
+        QDRANT["<b>Qdrant</b><br/>Vector DB<br/>🔍"]
     end
     
-    subgraph "Couche Données"
-        POSTGRES[(PostgreSQL<br/>Relational DB)]
-        REDIS[(Redis<br/>Cache)]
+    subgraph LAYER4["<b>💾 Couche Données</b>"]
+        POSTGRES[("<b>PostgreSQL</b><br/>Relational DB<br/>🐘")]
+        REDIS[("<b>Redis</b><br/>Cache<br/>⚡")]
     end
     
-    subgraph "Infrastructure"
-        GPU[NVIDIA GPU<br/>CUDA Support]
-        VOLUMES[Docker Volumes<br/>Persistent Storage]
+    subgraph INFRA["<b>🏗️ Infrastructure</b>"]
+        GPU["<b>NVIDIA GPU</b><br/>CUDA<br/>🚀"]
+        VOLUMES["<b>Docker Volumes</b><br/>Storage<br/>💿"]
     end
     
-    TRAEFIK --> WEBUI
-    TRAEFIK --> ANYTHING
-    TRAEFIK --> N8N
-    TRAEFIK --> ADMINER
-    TRAEFIK --> OLLAMA
-    TRAEFIK --> QDRANT
+    TRAEFIK ==> WEBUI
+    TRAEFIK ==> ANYTHING
+    TRAEFIK ==> N8N
+    TRAEFIK ==> ADMINER
+    TRAEFIK ==> OLLAMA
+    TRAEFIK ==> QDRANT
     
     WEBUI --> OLLAMA
     ANYTHING --> OLLAMA
@@ -45,21 +57,30 @@ graph TB
     N8N --> OLLAMA
     N8N --> POSTGRES
     
-    OLLAMA --> GPU
+    OLLAMA ==> GPU
     
-    WEBUI -.-> REDIS
-    N8N -.-> REDIS
+    WEBUI -.Cache.-> REDIS
+    N8N -.Cache.-> REDIS
     
-    POSTGRES --> VOLUMES
-    QDRANT --> VOLUMES
-    OLLAMA --> VOLUMES
-    REDIS --> VOLUMES
+    POSTGRES -.Persist.-> VOLUMES
+    QDRANT -.Persist.-> VOLUMES
+    OLLAMA -.Persist.-> VOLUMES
+    REDIS -.Persist.-> VOLUMES
     
-    style TRAEFIK fill:#326ce5,stroke:#fff,stroke-width:2px,color:#fff
-    style OLLAMA fill:#ff6b6b,stroke:#fff,stroke-width:2px,color:#fff
-    style POSTGRES fill:#336791,stroke:#fff,stroke-width:2px,color:#fff
-    style REDIS fill:#dc382d,stroke:#fff,stroke-width:2px,color:#fff
-    style GPU fill:#76b900,stroke:#fff,stroke-width:2px,color:#fff
+    style TRAEFIK fill:#326ce5,stroke:#1e4d8b,stroke-width:3px,color:#fff,rx:10,ry:10
+    style OLLAMA fill:#ff6b6b,stroke:#cc3333,stroke-width:3px,color:#fff,rx:10,ry:10
+    style QDRANT fill:#ff9f43,stroke:#cc7a2e,stroke-width:3px,color:#fff,rx:10,ry:10
+    style POSTGRES fill:#336791,stroke:#234a6d,stroke-width:3px,color:#fff,rx:10,ry:10
+    style REDIS fill:#dc382d,stroke:#a82820,stroke-width:3px,color:#fff,rx:10,ry:10
+    style GPU fill:#76b900,stroke:#5a8c00,stroke-width:3px,color:#fff,rx:10,ry:10
+    style WEBUI fill:#4CAF50,stroke:#2e7d32,stroke-width:3px,color:#fff,rx:10,ry:10
+    style ANYTHING fill:#9C27B0,stroke:#6a1b7f,stroke-width:3px,color:#fff,rx:10,ry:10
+    style N8N fill:#FF5722,stroke:#cc3d18,stroke-width:3px,color:#fff,rx:10,ry:10
+    style ADMINER fill:#00BCD4,stroke:#0097a7,stroke-width:3px,color:#fff,rx:10,ry:10
+    style VOLUMES fill:#607D8B,stroke:#455a64,stroke-width:3px,color:#fff,rx:10,ry:10
+    
+    classDef layerStyle fill:#f5f5f5,stroke:#333,stroke-width:2px,color:#333
+    class LAYER1,LAYER2,LAYER3,LAYER4,INFRA layerStyle
 ```
 
 ---
@@ -95,17 +116,23 @@ graph TB
 **Rôle** : Moteur d'inférence pour les modèles LLM
 
 ```mermaid
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'16px'}}}%%
 graph LR
-    A[Client Request] --> B[Ollama API :11434]
-    B --> C{GPU Available?}
-    C -->|Yes| D[CUDA Acceleration]
-    C -->|No| E[CPU Processing]
-    D --> F[Model Inference]
+    A["🌐 Client Request"] --> B["🦙 Ollama API<br/>:11434"]
+    B --> C{"GPU<br/>Available?"}
+    C -->|"✅ Yes"| D["⚡ CUDA<br/>Acceleration"]
+    C -->|"❌ No"| E["💻 CPU<br/>Processing"]
+    D --> F["🧠 Model<br/>Inference"]
     E --> F
-    F --> G[Response]
+    F --> G["📤 Response"]
     
-    style B fill:#ff6b6b,stroke:#333,stroke-width:2px
-    style D fill:#76b900,stroke:#333,stroke-width:2px
+    style A fill:#e3f2fd,stroke:#1976d2,stroke-width:3px,color:#000
+    style B fill:#ff6b6b,stroke:#cc3333,stroke-width:3px,color:#fff
+    style C fill:#fff3e0,stroke:#f57c00,stroke-width:3px,color:#000
+    style D fill:#76b900,stroke:#5a8c00,stroke-width:3px,color:#fff
+    style E fill:#90caf9,stroke:#1976d2,stroke-width:3px,color:#000
+    style F fill:#ba68c8,stroke:#7b1fa2,stroke-width:3px,color:#fff
+    style G fill:#66bb6a,stroke:#388e3c,stroke-width:3px,color:#fff
 ```
 
 | Caractéristique | Valeur |
@@ -284,45 +311,57 @@ erDiagram
 ## Architecture Réseau
 
 ```mermaid
-graph TB
-    subgraph "Réseau Externe"
-        CLIENT[Client Browser]
-        DNS[DNS Local<br/>hosts file]
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'14px'}}}%%
+graph LR
+    subgraph EXT["🌍 Réseau Externe"]
+        CLIENT["👤 Client<br/>Browser"]
+        DNS["📝 DNS Local<br/>hosts file"]
     end
     
-    subgraph "Docker Network: stack-ia-network (bridge)"
-        subgraph "Ports Exposés"
-            P80[":80 → Traefik HTTP"]
-            P443[":443 → Traefik HTTPS"]
-            P8081[":8081 → Traefik Dashboard"]
-            P3000[":3000 → Open WebUI"]
+    subgraph DOCKER["🐳 Docker: stack-ia-network"]
+        subgraph PORTS["🚪 Ports Exposés"]
+            direction TB
+            P80[":80 → HTTP"]
+            P443[":443 → HTTPS"]
+            P3000[":3000 → WebUI"]
             P3001[":3001 → AnythingLLM"]
             P5678[":5678 → n8n"]
-            P8080[":8080 → Adminer"]
-            P6333[":6333 → Qdrant HTTP"]
-            P11434[":11434 → Ollama API"]
         end
         
-        subgraph "Communication Interne"
-            INT[Réseau bridge interne<br/>Résolution DNS automatique]
+        subgraph SERVICES["🔧 Services Internes"]
+            direction TB
+            OLLAMA["🦙 ollama:11434"]
+            POSTGRES["🐘 postgres:5432"]
+            REDIS["⚡ redis:6379"]
+            QDRANT["🔍 qdrant:6333"]
         end
     end
     
     CLIENT --> DNS
-    DNS --> P80
-    DNS --> P443
-    CLIENT --> P3000
-    CLIENT --> P3001
+    DNS ==> P80
+    DNS ==> P443
+    CLIENT -.direct.-> P3000
+    CLIENT -.direct.-> P3001
     
-    P80 --> INT
-    P443 --> INT
-    INT -.->|ollama:11434| OLLAMA_INT[Ollama]
-    INT -.->|postgres:5432| PG_INT[PostgreSQL]
-    INT -.->|redis:6379| REDIS_INT[Redis]
+    P80 ==> OLLAMA
+    P80 ==> QDRANT
+    P3000 --> OLLAMA
+    P3001 --> OLLAMA
+    P3001 --> QDRANT
+    P5678 --> POSTGRES
+    P5678 --> REDIS
     
-    style P80 fill:#326ce5,stroke:#fff,stroke-width:2px,color:#fff
-    style P443 fill:#326ce5,stroke:#fff,stroke-width:2px,color:#fff
-    style INT fill:#f0f0f0,stroke:#333,stroke-width:2px
+    style CLIENT fill:#e1f5fe,stroke:#01579b,stroke-width:3px,color:#000
+    style DNS fill:#f3e5f5,stroke:#4a148c,stroke-width:3px,color:#000
+    style P80 fill:#326ce5,stroke:#1e4d8b,stroke-width:3px,color:#fff
+    style P443 fill:#1e88e5,stroke:#0d47a1,stroke-width:3px,color:#fff
+    style P3000 fill:#4CAF50,stroke:#2e7d32,stroke-width:2px,color:#fff
+    style P3001 fill:#9C27B0,stroke:#6a1b7f,stroke-width:2px,color:#fff
+    style P5678 fill:#FF5722,stroke:#cc3d18,stroke-width:2px,color:#fff
+    style OLLAMA fill:#ff6b6b,stroke:#cc3333,stroke-width:3px,color:#fff
+    style POSTGRES fill:#336791,stroke:#234a6d,stroke-width:3px,color:#fff
+    style REDIS fill:#dc382d,stroke:#a82820,stroke-width:3px,color:#fff
+    style QDRANT fill:#ff9f43,stroke:#cc7a2e,stroke-width:3px,color:#fff
 ```
 
 ### Résolution DNS
@@ -349,40 +388,51 @@ graph TB
 ## Persistance des Données
 
 ```mermaid
-graph LR
-    subgraph "Docker Volumes"
-        V1[traefik_letsencrypt<br/>Certificats SSL]
-        V2[traefik_logs<br/>Logs Traefik]
-        V3[ollama_data<br/>Modèles LLM]
-        V4[open-webui_data<br/>Configs & Sessions]
-        V5[postgres_data<br/>Base de données]
-        V6[n8n_data<br/>Workflows & Credentials]
-        V7[anythingllm_data<br/>Configs]
-        V8[anythingllm_documents<br/>Documents uploadés]
-        V9[anythingllm_outputs<br/>Fichiers générés]
-        V10[qdrant_data<br/>Vecteurs & Index]
-        V11[redis_data<br/>Snapshots RDB]
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'13px'}}}%%
+graph TB
+    subgraph VOLUMES["💿 Docker Volumes"]
+        direction TB
+        V1["🔒 traefik_letsencrypt<br/>Certificats SSL"]
+        V2["📋 traefik_logs<br/>Logs"]
+        V3["🦙 ollama_data<br/>Modèles LLM"]
+        V4["💬 webui_data<br/>Sessions"]
+        V5["🐘 postgres_data<br/>Database"]
+        V6["⚙️ n8n_data<br/>Workflows"]
+        V7["📚 anythingllm_data<br/>Configs"]
+        V8["📄 anythingllm_docs<br/>Documents"]
+        V9["📤 anythingllm_out<br/>Outputs"]
+        V10["🔍 qdrant_data<br/>Vectors"]
+        V11["⚡ redis_data<br/>Cache"]
     end
     
-    subgraph "Système Hôte"
-        HOST[/var/lib/docker/volumes/]
+    subgraph HOST["🗄️ Système Hôte"]
+        PHYSICAL["/var/lib/docker/volumes/"]
     end
     
-    V1 --> HOST
-    V2 --> HOST
-    V3 --> HOST
-    V4 --> HOST
-    V5 --> HOST
-    V6 --> HOST
-    V7 --> HOST
-    V8 --> HOST
-    V9 --> HOST
-    V10 --> HOST
-    V11 --> HOST
+    V1 -.-> PHYSICAL
+    V2 -.-> PHYSICAL
+    V3 ==> PHYSICAL
+    V4 -.-> PHYSICAL
+    V5 ==> PHYSICAL
+    V6 ==> PHYSICAL
+    V7 -.-> PHYSICAL
+    V8 ==> PHYSICAL
+    V9 -.-> PHYSICAL
+    V10 ==> PHYSICAL
+    V11 ==> PHYSICAL
     
-    style V3 fill:#ff6b6b,stroke:#333,stroke-width:2px
-    style V5 fill:#336791,stroke:#333,stroke-width:2px
-    style V10 fill:#ff9f43,stroke:#333,stroke-width:2px
+    style V1 fill:#9C27B0,stroke:#6a1b7f,stroke-width:2px,color:#fff
+    style V2 fill:#607D8B,stroke:#455a64,stroke-width:2px,color:#fff
+    style V3 fill:#ff6b6b,stroke:#cc3333,stroke-width:3px,color:#fff
+    style V4 fill:#4CAF50,stroke:#2e7d32,stroke-width:2px,color:#fff
+    style V5 fill:#336791,stroke:#234a6d,stroke-width:3px,color:#fff
+    style V6 fill:#FF5722,stroke:#cc3d18,stroke-width:3px,color:#fff
+    style V7 fill:#9C27B0,stroke:#6a1b7f,stroke-width:2px,color:#fff
+    style V8 fill:#795548,stroke:#4e342e,stroke-width:3px,color:#fff
+    style V9 fill:#9E9E9E,stroke:#616161,stroke-width:2px,color:#fff
+    style V10 fill:#ff9f43,stroke:#cc7a2e,stroke-width:3px,color:#fff
+    style V11 fill:#dc382d,stroke:#a82820,stroke-width:3px,color:#fff
+    style PHYSICAL fill:#263238,stroke:#000,stroke-width:3px,color:#fff
 ```
 
 ### Espace disque typique
@@ -403,80 +453,105 @@ graph LR
 ### Scénario 1 : Chat Simple (Open WebUI)
 
 ```mermaid
+%%{init: {'theme':'base', 'themeVariables': {'actorBkg':'#4CAF50','actorBorder':'#2e7d32','actorTextColor':'#fff','noteBkgColor':'#fff3e0','noteTextColor':'#000','noteBorderColor':'#f57c00','signalColor':'#333','signalTextColor':'#000','labelBoxBkgColor':'#e3f2fd','labelTextColor':'#000','loopTextColor':'#000','activationBkgColor':'#ffeb3b','activationBorderColor':'#f57f17'}}}%%
 sequenceDiagram
     autonumber
-    participant U as Utilisateur
-    participant T as Traefik
-    participant W as Open WebUI
-    participant O as Ollama
-    participant G as GPU
+    participant U as 👤 Utilisateur
+    participant T as 🔀 Traefik
+    participant W as 💬 Open WebUI
+    participant O as 🦙 Ollama
+    participant G as 🚀 GPU
     
-    U->>T: GET webui.stack-ia.local
-    T->>W: Forward request
-    W-->>U: Page HTML
+    U->>+T: GET webui.stack-ia.local
+    T->>+W: Forward request
+    W-->>-U: Page HTML
     
-    U->>W: POST /api/chat<br/>{"model": "llama3.2", "message": "..."}
-    W->>O: POST /api/generate
-    O->>G: CUDA inference
-    G-->>O: Tokens
-    O-->>W: Stream tokens
-    W-->>U: Display response
+    Note over U,W: Session établie
+    
+    U->>+W: POST /api/chat<br/>{"model": "llama3.2", "message": "..."}
+    W->>+O: POST /api/generate
+    activate O
+    O->>+G: CUDA inference
+    G-->>-O: Tokens générés
+    O-->>-W: Stream tokens
+    deactivate O
+    W-->>-U: Display response
+    
+    Note over U,O: Conversation complète
 ```
 
 ### Scénario 2 : RAG avec AnythingLLM
 
 ```mermaid
+%%{init: {'theme':'base', 'themeVariables': {'actorBkg':'#9C27B0','actorBorder':'#6a1b7f','actorTextColor':'#fff','noteBkgColor':'#e8f5e9','noteTextColor':'#000','noteBorderColor':'#4caf50'}}}%%
 sequenceDiagram
     autonumber
-    participant U as Utilisateur
-    participant A as AnythingLLM
-    participant O as Ollama
-    participant Q as Qdrant
+    participant U as 👤 User
+    participant A as 📚 AnythingLLM
+    participant O as 🦙 Ollama
+    participant Q as 🔍 Qdrant
     
-    rect rgb(240, 240, 240)
-        Note over U,Q: Phase 1: Indexation
-        U->>A: Upload PDF
+    rect rgb(255, 243, 224)
+        Note over U,Q: 📥 Phase 1: Indexation Document
+        U->>+A: Upload PDF
         A->>A: Extract & Chunk text
-        loop Pour chaque chunk
-            A->>O: POST /api/embeddings<br/>model: nomic-embed-text
-            O-->>A: Vector [768 dimensions]
+        loop 📄 Pour chaque chunk
+            A->>+O: POST /api/embeddings<br/>model: nomic-embed-text
+            O-->>-A: Vector [768 dim]
             A->>Q: Store vector + metadata
         end
+        Note over A,Q: ✅ Document indexé
     end
     
-    rect rgb(220, 240, 255)
-        Note over U,Q: Phase 2: Requête
-        U->>A: Question: "..."
-        A->>O: Generate query embedding
-        O-->>A: Query vector
-        A->>Q: Similarity search (top 5)
-        Q-->>A: Relevant chunks
-        A->>A: Build context
-        A->>O: Generate with context
-        O-->>A: Final answer
-        A-->>U: Response with sources
+    rect rgb(232, 245, 233)
+        Note over U,Q: 🔍 Phase 2: Recherche & Génération
+        U->>+A: Question: "..."
+        A->>+O: Generate query embedding
+        O-->>-A: Query vector
+        A->>+Q: Similarity search (top 5)
+        Q-->>-A: 📎 Relevant chunks
+        A->>A: 🔗 Build context
+        A->>+O: Generate with context
+        O-->>-A: 💬 Final answer
+        A-->>-U: Response + sources
+        Note over U,A: ✨ RAG complet
     end
 ```
 
 ### Scénario 3 : Workflow n8n
 
 ```mermaid
+%%{init: {'theme':'base', 'themeVariables': {'actorBkg':'#FF5722','actorBorder':'#cc3d18','actorTextColor':'#fff','noteBkgColor':'#fff3e0','noteTextColor':'#000','noteBorderColor':'#ff9800'}}}%%
 sequenceDiagram
     autonumber
-    participant W as Webhook
-    participant N as n8n
-    participant O as Ollama
-    participant P as PostgreSQL
-    participant E as Email/API
+    participant W as 🌐 Webhook
+    participant N as ⚙️ n8n
+    participant O as 🦙 Ollama
+    participant P as 🐘 PostgreSQL
+    participant E as 📧 Email/API
     
-    W->>N: POST /webhook/xyz<br/>Trigger event
-    N->>P: Log execution start
-    N->>O: Generate summary
-    O-->>N: LLM response
+    Note over W,N: 🔔 Déclenchement
+    W->>+N: POST /webhook/xyz<br/>Trigger event
+    
+    activate N
+    N->>P: 📝 Log execution start
+    
+    Note over N,O: 🤖 Traitement IA
+    N->>+O: Generate summary
+    O-->>-N: 💬 LLM response
+    
+    Note over N: 🔄 Transformation
     N->>N: Process data
+    
+    Note over N,E: 📤 Notification
     N->>E: Send notification
-    N->>P: Log success
-    N-->>W: 200 OK
+    
+    N->>P: ✅ Log success
+    deactivate N
+    
+    N-->>-W: 200 OK
+    
+    Note over W,E: ✨ Workflow terminé
 ```
 
 ---
@@ -679,94 +754,184 @@ Informations disponibles :
 
 ---
 
-## Diagramme Complet du Système
+## Vue Système Complète
+
+### Diagramme 1 : Flux Utilisateur vers Services
 
 ```mermaid
-flowchart TB
-    subgraph External["Accès Externe"]
-        USER[Utilisateur]
-        BROWSER[Navigateur Web]
-    end
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'14px'}}}%%
+graph TB
+    USER["👤 Utilisateur"]
+    BROWSER["🌐 Navigateur"]
+    HOSTS["📝 /etc/hosts<br/>DNS Local"]
+    TRAEFIK["🔀 Traefik<br/>:80, :443"]
     
-    subgraph DNS["DNS Local"]
-        HOSTS[/etc/hosts<br/>127.0.0.1 *.stack-ia.local]
-    end
-    
-    subgraph Docker["Docker Engine"]
-        subgraph Network["stack-ia-network"]
-            TRAEFIK[Traefik<br/>:80,:443,:8081]
-            
-            subgraph UI["Interface Layer"]
-                WEBUI[Open WebUI<br/>:3000]
-                ANYTHING[AnythingLLM<br/>:3001]
-                N8N[n8n<br/>:5678]
-                ADMINER[Adminer<br/>:8080]
-            end
-            
-            subgraph AI["AI Layer"]
-                OLLAMA[Ollama<br/>:11434]
-                QDRANT[Qdrant<br/>:6333,:6334]
-            end
-            
-            subgraph Data["Data Layer"]
-                POSTGRES[(PostgreSQL<br/>:5432)]
-                REDIS[(Redis<br/>:6379)]
-            end
-        end
-        
-        subgraph Storage["Volumes"]
-            VOL1[ollama_data<br/>5-50 GB]
-            VOL2[postgres_data<br/>100-500 MB]
-            VOL3[qdrant_data<br/>1-10 GB]
-            VOL4[redis_data<br/>50-512 MB]
-        end
-    end
-    
-    subgraph Hardware["Infrastructure"]
-        GPU[NVIDIA GPU<br/>CUDA]
-        CPU[CPU]
-        DISK[Disk Storage]
+    subgraph SERVICES["Services Web"]
+        WEBUI["💬 Open WebUI<br/>:3000"]
+        ANYTHING["📚 AnythingLLM<br/>:3001"]
+        N8N["⚙️ n8n<br/>:5678"]
+        ADMINER["🗄️ Adminer<br/>:8080"]
+        QDRANT_UI["🔍 Qdrant<br/>:6333"]
     end
     
     USER --> BROWSER
     BROWSER --> HOSTS
     HOSTS --> TRAEFIK
+    TRAEFIK ==> WEBUI
+    TRAEFIK ==> ANYTHING
+    TRAEFIK ==> N8N
+    TRAEFIK ==> ADMINER
+    TRAEFIK ==> QDRANT_UI
     
-    TRAEFIK --> WEBUI
-    TRAEFIK --> ANYTHING
-    TRAEFIK --> N8N
-    TRAEFIK --> ADMINER
-    TRAEFIK --> QDRANT
-    TRAEFIK --> OLLAMA
+    style USER fill:#e1f5fe,stroke:#01579b,stroke-width:3px,color:#000
+    style BROWSER fill:#fff3e0,stroke:#e65100,stroke-width:3px,color:#000
+    style HOSTS fill:#f3e5f5,stroke:#4a148c,stroke-width:3px,color:#000
+    style TRAEFIK fill:#326ce5,stroke:#1e4d8b,stroke-width:4px,color:#fff
+    style WEBUI fill:#4CAF50,stroke:#2e7d32,stroke-width:3px,color:#fff
+    style ANYTHING fill:#9C27B0,stroke:#6a1b7f,stroke-width:3px,color:#fff
+    style N8N fill:#FF5722,stroke:#cc3d18,stroke-width:3px,color:#fff
+    style ADMINER fill:#00BCD4,stroke:#0097a7,stroke-width:3px,color:#fff
+    style QDRANT_UI fill:#ff9f43,stroke:#cc7a2e,stroke-width:3px,color:#fff
+```
+
+### Diagramme 2 : Communication Backend
+
+```mermaid
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'14px'}}}%%
+graph LR
+    subgraph UI["🖥️ Frontend"]
+        WEBUI["Open WebUI"]
+        ANYTHING["AnythingLLM"]
+        N8N["n8n"]
+    end
+    
+    subgraph BACKEND["🧠 Backend IA"]
+        OLLAMA["Ollama<br/>LLM"]
+        QDRANT["Qdrant<br/>Vectors"]
+    end
+    
+    subgraph DATA["💾 Données"]
+        POSTGRES[("PostgreSQL")]
+        REDIS[("Redis")]
+    end
     
     WEBUI --> OLLAMA
+    WEBUI -.cache.-> REDIS
+    
     ANYTHING --> OLLAMA
     ANYTHING --> QDRANT
+    
     N8N --> OLLAMA
     N8N --> POSTGRES
+    N8N -.cache.-> REDIS
     
-    OLLAMA --> GPU
+    style WEBUI fill:#4CAF50,stroke:#2e7d32,stroke-width:3px,color:#fff
+    style ANYTHING fill:#9C27B0,stroke:#6a1b7f,stroke-width:3px,color:#fff
+    style N8N fill:#FF5722,stroke:#cc3d18,stroke-width:3px,color:#fff
+    style OLLAMA fill:#ff6b6b,stroke:#cc3333,stroke-width:3px,color:#fff
+    style QDRANT fill:#ff9f43,stroke:#cc7a2e,stroke-width:3px,color:#fff
+    style POSTGRES fill:#336791,stroke:#234a6d,stroke-width:3px,color:#fff
+    style REDIS fill:#dc382d,stroke:#a82820,stroke-width:3px,color:#fff
+```
+
+### Diagramme 3 : Infrastructure & Persistance
+
+```mermaid
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'14px'}}}%%
+graph TB
+    subgraph COMPUTE["⚡ Compute"]
+        GPU["🚀 NVIDIA GPU<br/>CUDA Cores"]
+        CPU["💻 CPU<br/>Multi-thread"]
+    end
+    
+    subgraph APPS["📦 Applications"]
+        OLLAMA["Ollama"]
+        POSTGRES["PostgreSQL"]
+        QDRANT["Qdrant"]
+        REDIS["Redis"]
+    end
+    
+    subgraph STORAGE["💿 Docker Volumes"]
+        VOL1["ollama_data<br/>5-50 GB"]
+        VOL2["postgres_data<br/>100-500 MB"]
+        VOL3["qdrant_data<br/>1-10 GB"]
+        VOL4["redis_data<br/>50-512 MB"]
+    end
+    
+    subgraph DISK["🗄️ Système Hôte"]
+        PHYSICAL["/var/lib/docker/volumes"]
+    end
+    
+    OLLAMA ==> GPU
     OLLAMA --> CPU
     
-    WEBUI -.Cache.-> REDIS
-    N8N -.Cache.-> REDIS
+    OLLAMA -.persist.-> VOL1
+    POSTGRES -.persist.-> VOL2
+    QDRANT -.persist.-> VOL3
+    REDIS -.persist.-> VOL4
     
-    OLLAMA --> VOL1
-    POSTGRES --> VOL2
-    QDRANT --> VOL3
-    REDIS --> VOL4
+    VOL1 --> PHYSICAL
+    VOL2 --> PHYSICAL
+    VOL3 --> PHYSICAL
+    VOL4 --> PHYSICAL
     
-    VOL1 --> DISK
-    VOL2 --> DISK
-    VOL3 --> DISK
-    VOL4 --> DISK
+    style GPU fill:#76b900,stroke:#5a8c00,stroke-width:4px,color:#fff
+    style CPU fill:#2196F3,stroke:#1565c0,stroke-width:3px,color:#fff
+    style OLLAMA fill:#ff6b6b,stroke:#cc3333,stroke-width:3px,color:#fff
+    style POSTGRES fill:#336791,stroke:#234a6d,stroke-width:3px,color:#fff
+    style QDRANT fill:#ff9f43,stroke:#cc7a2e,stroke-width:3px,color:#fff
+    style REDIS fill:#dc382d,stroke:#a82820,stroke-width:3px,color:#fff
+    style VOL1 fill:#ffeb3b,stroke:#f57f17,stroke-width:2px,color:#000
+    style VOL2 fill:#8bc34a,stroke:#558b2f,stroke-width:2px,color:#000
+    style VOL3 fill:#ff9800,stroke:#e65100,stroke-width:2px,color:#000
+    style VOL4 fill:#f44336,stroke:#b71c1c,stroke-width:2px,color:#fff
+    style PHYSICAL fill:#607D8B,stroke:#37474f,stroke-width:3px,color:#fff
+```
+
+### Diagramme 4 : Architecture Réseau Docker
+
+```mermaid
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'14px'}}}%%
+graph TB
+    EXTERNAL["🌍 Internet<br/>Client"]
     
-    style TRAEFIK fill:#326ce5,stroke:#fff,stroke-width:3px,color:#fff
-    style OLLAMA fill:#ff6b6b,stroke:#fff,stroke-width:2px,color:#fff
-    style POSTGRES fill:#336791,stroke:#fff,stroke-width:2px,color:#fff
-    style REDIS fill:#dc382d,stroke:#fff,stroke-width:2px,color:#fff
-    style QDRANT fill:#ff9f43,stroke:#fff,stroke-width:2px,color:#fff
-    style GPU fill:#76b900,stroke:#fff,stroke-width:2px,color:#fff
+    subgraph BRIDGE["🌉 stack-ia-network (bridge)"]
+        direction TB
+        TRAEFIK["Traefik<br/>Gateway"]
+        
+        subgraph MICROSERVICES["Microservices"]
+            direction LR
+            S1["WebUI"]
+            S2["n8n"]
+            S3["Ollama"]
+            S4["Qdrant"]
+        end
+        
+        DNS["Docker DNS<br/>Service Discovery"]
+    end
+    
+    EXTERNAL --> TRAEFIK
+    TRAEFIK --> S1
+    TRAEFIK --> S2
+    
+    S1 -.Internal.-> S3
+    S2 -.Internal.-> S3
+    S2 -.Internal.-> S4
+    
+    DNS -.Resolve.-> S1
+    DNS -.Resolve.-> S2
+    DNS -.Resolve.-> S3
+    DNS -.Resolve.-> S4
+    
+    style EXTERNAL fill:#e1f5fe,stroke:#01579b,stroke-width:3px,color:#000
+    style TRAEFIK fill:#326ce5,stroke:#1e4d8b,stroke-width:4px,color:#fff
+    style S1 fill:#4CAF50,stroke:#2e7d32,stroke-width:2px,color:#fff
+    style S2 fill:#FF5722,stroke:#cc3d18,stroke-width:2px,color:#fff
+    style S3 fill:#ff6b6b,stroke:#cc3333,stroke-width:2px,color:#fff
+    style S4 fill:#ff9f43,stroke:#cc7a2e,stroke-width:2px,color:#fff
+    style DNS fill:#9C27B0,stroke:#6a1b7f,stroke-width:3px,color:#fff
+    style BRIDGE fill:#f5f5f5,stroke:#333,stroke-width:2px
+    style MICROSERVICES fill:#fff,stroke:#666,stroke-width:1px
 ```
 
 ---
