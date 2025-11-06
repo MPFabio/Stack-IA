@@ -181,7 +181,7 @@ phi3            (2.3GB)- Léger et rapide
 **Rôle** : Interface de chat moderne similaire à ChatGPT
 
 ```mermaid
-%%{init: {'theme':'default'}}%%
+%%{init: {'theme':'forest'}}%%
 sequenceDiagram
     participant U as 👤 Utilisateur
     participant W as 💬 Open WebUI
@@ -469,7 +469,7 @@ graph TB
 ### Scénario 1 : Chat Simple (Open WebUI)
 
 ```mermaid
-%%{init: {'theme':'default'}}%%
+%%{init: {'theme':'forest'}}%%
 sequenceDiagram
     autonumber
     participant U as 👤 Utilisateur
@@ -499,7 +499,7 @@ sequenceDiagram
 ### Scénario 2 : RAG avec AnythingLLM
 
 ```mermaid
-%%{init: {'theme':'default'}}%%
+%%{init: {'theme':'forest'}}%%
 sequenceDiagram
     autonumber
     participant U as 👤 User
@@ -537,7 +537,7 @@ sequenceDiagram
 ### Scénario 3 : Workflow n8n
 
 ```mermaid
-%%{init: {'theme':'default'}}%%
+%%{init: {'theme':'forest'}}%%
 sequenceDiagram
     autonumber
     participant W as 🌐 Webhook
