@@ -15,10 +15,8 @@
 
 Stack-IA est une architecture microservices complète pour l'intelligence artificielle locale, orchestrée via Docker Compose et Traefik.
 
-<div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-
 ```mermaid
-%%{init: {'theme':'neutral'}}%%
+%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#326ce5','primaryTextColor':'#fff','primaryBorderColor':'#fff','lineColor':'#666','secondaryColor':'#ff6b6b','tertiaryColor':'#76b900'}}}%%
 graph TB
     subgraph LAYER1["<b>🌐 Couche Accès - Port 80/443</b>"]
         TRAEFIK["<b>Traefik</b><br/>Reverse Proxy<br/>🔀"]
@@ -119,10 +117,8 @@ graph TB
 #### Ollama
 **Rôle** : Moteur d'inférence pour les modèles LLM
 
-<div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-
 ```mermaid
-%%{init: {'theme':'neutral'}}%%
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'16px', 'lineColor':'#333', 'primaryColor':'#fff', 'primaryBorderColor':'#333'}}}%%
 graph LR
     A["🌐 Client Request"] --> B["🦙 Ollama API<br/>:11434"]
     B --> C{"GPU<br/>Available?"}
@@ -142,8 +138,6 @@ graph LR
     
     linkStyle default stroke:#333,stroke-width:2px
 ```
-
-</div>
 
 | Caractéristique | Valeur |
 |----------------|--------|
@@ -186,10 +180,8 @@ phi3            (2.3GB)- Léger et rapide
 #### Open WebUI
 **Rôle** : Interface de chat moderne similaire à ChatGPT
 
-<div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-
 ```mermaid
-%%{init: {'theme':'neutral'}}%%
+%%{init: {'theme':'forest'}}%%
 sequenceDiagram
     participant U as 👤 Utilisateur
     participant W as 💬 Open WebUI
@@ -208,8 +200,6 @@ sequenceDiagram
     deactivate R
     W-->>-U: Display response
 ```
-
-</div>
 
 | Caractéristique | Valeur |
 |----------------|--------|
@@ -326,10 +316,8 @@ erDiagram
 
 ## Architecture Réseau
 
-<div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-
 ```mermaid
-%%{init: {'theme':'neutral'}}%%
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'14px'}}}%%
 graph LR
     subgraph EXT["🌍 Réseau Externe"]
         CLIENT["👤 Client<br/>Browser"]
@@ -388,8 +376,6 @@ graph LR
     linkStyle default stroke:#333,stroke-width:2px
 ```
 
-</div>
-
 ### Résolution DNS
 
 **Externe (via /etc/hosts ou C:\Windows\System32\drivers\etc\hosts)** :
@@ -413,10 +399,8 @@ graph LR
 
 ## Persistance des Données
 
-<div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-
 ```mermaid
-%%{init: {'theme':'neutral'}}%%
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'13px'}}}%%
 graph TB
     subgraph VOLUMES["💿 Docker Volumes"]
         direction TB
@@ -467,8 +451,6 @@ graph TB
     linkStyle default stroke:#333,stroke-width:2px
 ```
 
-</div>
-
 ### Espace disque typique
 
 | Volume | Taille estimée | Croissance |
@@ -486,10 +468,8 @@ graph TB
 
 ### Scénario 1 : Chat Simple (Open WebUI)
 
-<div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-
 ```mermaid
-%%{init: {'theme':'neutral'}}%%
+%%{init: {'theme':'forest'}}%%
 sequenceDiagram
     autonumber
     participant U as 👤 Utilisateur
@@ -516,14 +496,10 @@ sequenceDiagram
     Note over U,O: Conversation complète
 ```
 
-</div>
-
 ### Scénario 2 : RAG avec AnythingLLM
 
-<div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-
 ```mermaid
-%%{init: {'theme':'neutral'}}%%
+%%{init: {'theme':'forest'}}%%
 sequenceDiagram
     autonumber
     participant U as 👤 User
@@ -558,14 +534,10 @@ sequenceDiagram
     end
 ```
 
-</div>
-
 ### Scénario 3 : Workflow n8n
 
-<div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-
 ```mermaid
-%%{init: {'theme':'neutral'}}%%
+%%{init: {'theme':'forest'}}%%
 sequenceDiagram
     autonumber
     participant W as 🌐 Webhook
@@ -597,8 +569,6 @@ sequenceDiagram
     
     Note over W,E: ✨ Workflow terminé
 ```
-
-</div>
 
 ---
 
@@ -804,10 +774,8 @@ Informations disponibles :
 
 ### Diagramme 1 : Flux Utilisateur vers Services
 
-<div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-
 ```mermaid
-%%{init: {'theme':'neutral'}}%%
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'14px'}}}%%
 graph TB
     USER["👤 Utilisateur"]
     BROWSER["🌐 Navigateur"]
@@ -845,14 +813,10 @@ graph TB
     linkStyle default stroke:#333,stroke-width:2px
 ```
 
-</div>
-
 ### Diagramme 2 : Communication Backend
 
-<div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-
 ```mermaid
-%%{init: {'theme':'neutral'}}%%
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'14px'}}}%%
 graph LR
     subgraph UI["🖥️ Frontend"]
         WEBUI["Open WebUI"]
@@ -894,14 +858,10 @@ graph LR
     linkStyle default stroke:#333,stroke-width:2px
 ```
 
-</div>
-
 ### Diagramme 3 : Infrastructure & Persistance
 
-<div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-
 ```mermaid
-%%{init: {'theme':'neutral'}}%%
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'14px'}}}%%
 graph TB
     subgraph COMPUTE["⚡ Compute"]
         GPU["🚀 NVIDIA GPU<br/>CUDA Cores"]
@@ -958,14 +918,10 @@ graph TB
     linkStyle default stroke:#333,stroke-width:2px
 ```
 
-</div>
-
 ### Diagramme 4 : Architecture Réseau Docker
 
-<div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-
 ```mermaid
-%%{init: {'theme':'neutral'}}%%
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'14px'}}}%%
 graph TB
     EXTERNAL["🌍 Internet<br/>Client"]
     
@@ -1009,8 +965,6 @@ graph TB
     
     linkStyle default stroke:#333,stroke-width:2px
 ```
-
-</div>
 
 ---
 
