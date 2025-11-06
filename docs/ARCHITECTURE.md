@@ -82,7 +82,7 @@ graph TB
     classDef layerStyle fill:#ffffff,stroke:#333,stroke-width:2px,color:#333
     class LAYER1,LAYER2,LAYER3,LAYER4,INFRA layerStyle
     
-    classDef bgWhite fill:#f8f9fa,stroke:#dee2e6,stroke-width:1px
+    linkStyle default stroke:#333,stroke-width:2px
 ```
 
 ---
@@ -118,7 +118,7 @@ graph TB
 **Rôle** : Moteur d'inférence pour les modèles LLM
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'16px'}}}%%
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'16px', 'lineColor':'#333', 'primaryColor':'#fff', 'primaryBorderColor':'#333'}}}%%
 graph LR
     A["🌐 Client Request"] --> B["🦙 Ollama API<br/>:11434"]
     B --> C{"GPU<br/>Available?"}
@@ -135,6 +135,8 @@ graph LR
     style E fill:#90caf9,stroke:#1976d2,stroke-width:3px,color:#000
     style F fill:#ba68c8,stroke:#7b1fa2,stroke-width:3px,color:#fff
     style G fill:#66bb6a,stroke:#388e3c,stroke-width:3px,color:#fff
+    
+    linkStyle default stroke:#333,stroke-width:2px
 ```
 
 | Caractéristique | Valeur |
@@ -368,6 +370,8 @@ graph LR
     style DOCKER fill:#ffffff,stroke:#333,stroke-width:3px
     style PORTS fill:#f8f9fa,stroke:#666,stroke-width:2px
     style SERVICES fill:#f8f9fa,stroke:#666,stroke-width:2px
+    
+    linkStyle default stroke:#333,stroke-width:2px
 ```
 
 ### Résolution DNS
@@ -441,6 +445,8 @@ graph TB
     style PHYSICAL fill:#263238,stroke:#000,stroke-width:3px,color:#fff
     style VOLUMES fill:#ffffff,stroke:#333,stroke-width:3px
     style HOST fill:#ffffff,stroke:#333,stroke-width:3px
+    
+    linkStyle default stroke:#333,stroke-width:2px
 ```
 
 ### Espace disque typique
@@ -801,6 +807,8 @@ graph TB
     style ADMINER fill:#00BCD4,stroke:#0097a7,stroke-width:3px,color:#fff
     style QDRANT_UI fill:#ff9f43,stroke:#cc7a2e,stroke-width:3px,color:#fff
     style SERVICES fill:#ffffff,stroke:#333,stroke-width:3px
+    
+    linkStyle default stroke:#333,stroke-width:2px
 ```
 
 ### Diagramme 2 : Communication Backend
@@ -844,6 +852,8 @@ graph LR
     style UI fill:#ffffff,stroke:#333,stroke-width:3px
     style BACKEND fill:#ffffff,stroke:#333,stroke-width:3px
     style DATA fill:#ffffff,stroke:#333,stroke-width:3px
+    
+    linkStyle default stroke:#333,stroke-width:2px
 ```
 
 ### Diagramme 3 : Infrastructure & Persistance
@@ -902,6 +912,8 @@ graph TB
     style APPS fill:#ffffff,stroke:#333,stroke-width:3px
     style STORAGE fill:#ffffff,stroke:#333,stroke-width:3px
     style DISK fill:#ffffff,stroke:#333,stroke-width:3px
+    
+    linkStyle default stroke:#333,stroke-width:2px
 ```
 
 ### Diagramme 4 : Architecture Réseau Docker
@@ -948,6 +960,8 @@ graph TB
     style DNS fill:#9C27B0,stroke:#6a1b7f,stroke-width:3px,color:#fff
     style BRIDGE fill:#ffffff,stroke:#333,stroke-width:3px
     style MICROSERVICES fill:#f8f9fa,stroke:#666,stroke-width:2px
+    
+    linkStyle default stroke:#333,stroke-width:2px
 ```
 
 ---
