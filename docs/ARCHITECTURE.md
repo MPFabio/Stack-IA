@@ -79,8 +79,10 @@ graph TB
     style ADMINER fill:#00BCD4,stroke:#0097a7,stroke-width:3px,color:#fff,rx:10,ry:10
     style VOLUMES fill:#607D8B,stroke:#455a64,stroke-width:3px,color:#fff,rx:10,ry:10
     
-    classDef layerStyle fill:#f5f5f5,stroke:#333,stroke-width:2px,color:#333
+    classDef layerStyle fill:#ffffff,stroke:#333,stroke-width:2px,color:#333
     class LAYER1,LAYER2,LAYER3,LAYER4,INFRA layerStyle
+    
+    classDef bgWhite fill:#f8f9fa,stroke:#dee2e6,stroke-width:1px
 ```
 
 ---
@@ -362,6 +364,10 @@ graph LR
     style POSTGRES fill:#336791,stroke:#234a6d,stroke-width:3px,color:#fff
     style REDIS fill:#dc382d,stroke:#a82820,stroke-width:3px,color:#fff
     style QDRANT fill:#ff9f43,stroke:#cc7a2e,stroke-width:3px,color:#fff
+    style EXT fill:#ffffff,stroke:#333,stroke-width:3px
+    style DOCKER fill:#ffffff,stroke:#333,stroke-width:3px
+    style PORTS fill:#f8f9fa,stroke:#666,stroke-width:2px
+    style SERVICES fill:#f8f9fa,stroke:#666,stroke-width:2px
 ```
 
 ### Résolution DNS
@@ -433,6 +439,8 @@ graph TB
     style V10 fill:#ff9f43,stroke:#cc7a2e,stroke-width:3px,color:#fff
     style V11 fill:#dc382d,stroke:#a82820,stroke-width:3px,color:#fff
     style PHYSICAL fill:#263238,stroke:#000,stroke-width:3px,color:#fff
+    style VOLUMES fill:#ffffff,stroke:#333,stroke-width:3px
+    style HOST fill:#ffffff,stroke:#333,stroke-width:3px
 ```
 
 ### Espace disque typique
@@ -792,6 +800,7 @@ graph TB
     style N8N fill:#FF5722,stroke:#cc3d18,stroke-width:3px,color:#fff
     style ADMINER fill:#00BCD4,stroke:#0097a7,stroke-width:3px,color:#fff
     style QDRANT_UI fill:#ff9f43,stroke:#cc7a2e,stroke-width:3px,color:#fff
+    style SERVICES fill:#ffffff,stroke:#333,stroke-width:3px
 ```
 
 ### Diagramme 2 : Communication Backend
@@ -832,6 +841,9 @@ graph LR
     style QDRANT fill:#ff9f43,stroke:#cc7a2e,stroke-width:3px,color:#fff
     style POSTGRES fill:#336791,stroke:#234a6d,stroke-width:3px,color:#fff
     style REDIS fill:#dc382d,stroke:#a82820,stroke-width:3px,color:#fff
+    style UI fill:#ffffff,stroke:#333,stroke-width:3px
+    style BACKEND fill:#ffffff,stroke:#333,stroke-width:3px
+    style DATA fill:#ffffff,stroke:#333,stroke-width:3px
 ```
 
 ### Diagramme 3 : Infrastructure & Persistance
@@ -886,6 +898,10 @@ graph TB
     style VOL3 fill:#ff9800,stroke:#e65100,stroke-width:2px,color:#000
     style VOL4 fill:#f44336,stroke:#b71c1c,stroke-width:2px,color:#fff
     style PHYSICAL fill:#607D8B,stroke:#37474f,stroke-width:3px,color:#fff
+    style COMPUTE fill:#ffffff,stroke:#333,stroke-width:3px
+    style APPS fill:#ffffff,stroke:#333,stroke-width:3px
+    style STORAGE fill:#ffffff,stroke:#333,stroke-width:3px
+    style DISK fill:#ffffff,stroke:#333,stroke-width:3px
 ```
 
 ### Diagramme 4 : Architecture Réseau Docker
@@ -930,8 +946,8 @@ graph TB
     style S3 fill:#ff6b6b,stroke:#cc3333,stroke-width:2px,color:#fff
     style S4 fill:#ff9f43,stroke:#cc7a2e,stroke-width:2px,color:#fff
     style DNS fill:#9C27B0,stroke:#6a1b7f,stroke-width:3px,color:#fff
-    style BRIDGE fill:#f5f5f5,stroke:#333,stroke-width:2px
-    style MICROSERVICES fill:#fff,stroke:#666,stroke-width:1px
+    style BRIDGE fill:#ffffff,stroke:#333,stroke-width:3px
+    style MICROSERVICES fill:#f8f9fa,stroke:#666,stroke-width:2px
 ```
 
 ---
