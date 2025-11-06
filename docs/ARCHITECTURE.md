@@ -181,22 +181,24 @@ phi3            (2.3GB)- Léger et rapide
 **Rôle** : Interface de chat moderne similaire à ChatGPT
 
 ```mermaid
+%%{init: {'theme':'base', 'themeVariables': {'background':'#ffffff','mainBkg':'#ffffff','actorBkg':'#2196F3','actorBorder':'#1565c0','actorTextColor':'#fff','actorLineColor':'#333','noteBkgColor':'#e8f5e9','noteTextColor':'#000','noteBorderColor':'#4caf50','signalColor':'#333','signalTextColor':'#000','labelBoxBkgColor':'#fff3e0','labelTextColor':'#000','loopTextColor':'#000','altBkgColor':'#f5f5f5','activationBkgColor':'#ffeb3b','activationBorderColor':'#f57f17','sequenceNumberColor':'#000'}}}%%
 sequenceDiagram
-    participant U as Utilisateur
-    participant W as Open WebUI
-    participant O as Ollama
-    participant R as Redis
+    participant U as 👤 Utilisateur
+    participant W as 💬 Open WebUI
+    participant O as 🦙 Ollama
+    participant R as ⚡ Redis
     
-    U->>W: Message
-    W->>R: Check cache
+    U->>+W: Message
+    W->>+R: Check cache
     alt Cache hit
         R-->>W: Cached response
     else Cache miss
-        W->>O: POST /api/generate
-        O-->>W: Streaming response
+        W->>+O: POST /api/generate
+        O-->>-W: Streaming response
         W->>R: Store in cache
     end
-    W-->>U: Display response
+    deactivate R
+    W-->>-U: Display response
 ```
 
 | Caractéristique | Valeur |
@@ -467,7 +469,7 @@ graph TB
 ### Scénario 1 : Chat Simple (Open WebUI)
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': {'actorBkg':'#4CAF50','actorBorder':'#2e7d32','actorTextColor':'#fff','noteBkgColor':'#fff3e0','noteTextColor':'#000','noteBorderColor':'#f57c00','signalColor':'#333','signalTextColor':'#000','labelBoxBkgColor':'#e3f2fd','labelTextColor':'#000','loopTextColor':'#000','activationBkgColor':'#ffeb3b','activationBorderColor':'#f57f17'}}}%%
+%%{init: {'theme':'base', 'themeVariables': {'background':'#ffffff','mainBkg':'#ffffff','actorBkg':'#4CAF50','actorBorder':'#2e7d32','actorTextColor':'#fff','actorLineColor':'#333','noteBkgColor':'#fff3e0','noteTextColor':'#000','noteBorderColor':'#f57c00','signalColor':'#333','signalTextColor':'#000','labelBoxBkgColor':'#e3f2fd','labelTextColor':'#000','loopTextColor':'#000','activationBkgColor':'#ffeb3b','activationBorderColor':'#f57f17','sequenceNumberColor':'#000'}}}%%
 sequenceDiagram
     autonumber
     participant U as 👤 Utilisateur
@@ -497,7 +499,7 @@ sequenceDiagram
 ### Scénario 2 : RAG avec AnythingLLM
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': {'actorBkg':'#9C27B0','actorBorder':'#6a1b7f','actorTextColor':'#fff','noteBkgColor':'#e8f5e9','noteTextColor':'#000','noteBorderColor':'#4caf50'}}}%%
+%%{init: {'theme':'base', 'themeVariables': {'background':'#ffffff','mainBkg':'#ffffff','actorBkg':'#9C27B0','actorBorder':'#6a1b7f','actorTextColor':'#fff','actorLineColor':'#333','noteBkgColor':'#e8f5e9','noteTextColor':'#000','noteBorderColor':'#4caf50','signalColor':'#333','signalTextColor':'#000','labelBoxBkgColor':'#fff3e0','labelTextColor':'#000','loopTextColor':'#000','activationBkgColor':'#ffeb3b','activationBorderColor':'#f57f17','sequenceNumberColor':'#000'}}}%%
 sequenceDiagram
     autonumber
     participant U as 👤 User
@@ -535,7 +537,7 @@ sequenceDiagram
 ### Scénario 3 : Workflow n8n
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': {'actorBkg':'#FF5722','actorBorder':'#cc3d18','actorTextColor':'#fff','noteBkgColor':'#fff3e0','noteTextColor':'#000','noteBorderColor':'#ff9800'}}}%%
+%%{init: {'theme':'base', 'themeVariables': {'background':'#ffffff','mainBkg':'#ffffff','actorBkg':'#FF5722','actorBorder':'#cc3d18','actorTextColor':'#fff','actorLineColor':'#333','noteBkgColor':'#fff3e0','noteTextColor':'#000','noteBorderColor':'#ff9800','signalColor':'#333','signalTextColor':'#000','labelBoxBkgColor':'#e3f2fd','labelTextColor':'#000','loopTextColor':'#000','activationBkgColor':'#ffeb3b','activationBorderColor':'#f57f17','sequenceNumberColor':'#000'}}}%%
 sequenceDiagram
     autonumber
     participant W as 🌐 Webhook
