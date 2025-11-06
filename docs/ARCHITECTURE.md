@@ -181,7 +181,7 @@ phi3            (2.3GB)- Léger et rapide
 **Rôle** : Interface de chat moderne similaire à ChatGPT
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': {'background':'#ffffff','mainBkg':'#ffffff','actorBkg':'#2196F3','actorBorder':'#1565c0','actorTextColor':'#fff','actorLineColor':'#000','noteBkgColor':'#e3f2fd','noteTextColor':'#000','noteBorderColor':'#2196F3','signalColor':'#000','signalTextColor':'#000','labelBoxBkgColor':'#fff3e0','labelTextColor':'#000','loopTextColor':'#000','altBkgColor':'#f5f5f5','activationBkgColor':'#ffd54f','activationBorderColor':'#f57f17','sequenceNumberColor':'#000'}}}%%
+%%{init: {'theme':'default'}}%%
 sequenceDiagram
     participant U as 👤 Utilisateur
     participant W as 💬 Open WebUI
@@ -469,7 +469,7 @@ graph TB
 ### Scénario 1 : Chat Simple (Open WebUI)
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': {'background':'#ffffff','mainBkg':'#ffffff','actorBkg':'#4CAF50','actorBorder':'#2e7d32','actorTextColor':'#fff','actorLineColor':'#000','noteBkgColor':'#fff3e0','noteTextColor':'#000','noteBorderColor':'#ff9800','signalColor':'#000','signalTextColor':'#000','labelBoxBkgColor':'#e3f2fd','labelTextColor':'#000','loopTextColor':'#000','activationBkgColor':'#ffd54f','activationBorderColor':'#f57f17','sequenceNumberColor':'#000'}}}%%
+%%{init: {'theme':'default'}}%%
 sequenceDiagram
     autonumber
     participant U as 👤 Utilisateur
@@ -499,7 +499,7 @@ sequenceDiagram
 ### Scénario 2 : RAG avec AnythingLLM
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': {'background':'#ffffff','mainBkg':'#ffffff','actorBkg':'#9C27B0','actorBorder':'#6a1b7f','actorTextColor':'#fff','actorLineColor':'#000','noteBkgColor':'#f3e5f5','noteTextColor':'#000','noteBorderColor':'#9C27B0','signalColor':'#000','signalTextColor':'#000','labelBoxBkgColor':'#fff3e0','labelTextColor':'#000','loopTextColor':'#000','activationBkgColor':'#ffd54f','activationBorderColor':'#f57f17','sequenceNumberColor':'#000'}}}%%
+%%{init: {'theme':'default'}}%%
 sequenceDiagram
     autonumber
     participant U as 👤 User
@@ -537,7 +537,7 @@ sequenceDiagram
 ### Scénario 3 : Workflow n8n
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': {'background':'#ffffff','mainBkg':'#ffffff','actorBkg':'#FF5722','actorBorder':'#cc3d18','actorTextColor':'#fff','actorLineColor':'#000','noteBkgColor':'#fff3e0','noteTextColor':'#000','noteBorderColor':'#ff9800','signalColor':'#000','signalTextColor':'#000','labelBoxBkgColor':'#e3f2fd','labelTextColor':'#000','loopTextColor':'#000','activationBkgColor':'#ffd54f','activationBorderColor':'#f57f17','sequenceNumberColor':'#000'}}}%%
+%%{init: {'theme':'default'}}%%
 sequenceDiagram
     autonumber
     participant W as 🌐 Webhook
