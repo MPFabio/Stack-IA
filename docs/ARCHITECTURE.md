@@ -181,7 +181,7 @@ phi3            (2.3GB)- Léger et rapide
 **Rôle** : Interface de chat moderne similaire à ChatGPT
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': {'background':'#ffffff','mainBkg':'#ffffff','actorBkg':'#2196F3','actorBorder':'#1565c0','actorTextColor':'#fff','actorLineColor':'#333','noteBkgColor':'#e8f5e9','noteTextColor':'#000','noteBorderColor':'#4caf50','signalColor':'#333','signalTextColor':'#000','labelBoxBkgColor':'#fff3e0','labelTextColor':'#000','loopTextColor':'#000','altBkgColor':'#f5f5f5','activationBkgColor':'#ffeb3b','activationBorderColor':'#f57f17','sequenceNumberColor':'#000'}}}%%
+%%{init: {'theme':'base', 'themeVariables': {'background':'#e3f2fd','mainBkg':'#e3f2fd','actorBkg':'#2196F3','actorBorder':'#1565c0','actorTextColor':'#fff','actorLineColor':'#1565c0','noteBkgColor':'#bbdefb','noteTextColor':'#000','noteBorderColor':'#1565c0','signalColor':'#000','signalTextColor':'#000','labelBoxBkgColor':'#bbdefb','labelTextColor':'#000','loopTextColor':'#000','altBkgColor':'#cfe9ff','activationBkgColor':'#ffeb3b','activationBorderColor':'#f57f17','sequenceNumberColor':'#fff'}}}%%
 sequenceDiagram
     participant U as 👤 Utilisateur
     participant W as 💬 Open WebUI
@@ -469,7 +469,7 @@ graph TB
 ### Scénario 1 : Chat Simple (Open WebUI)
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': {'background':'#ffffff','mainBkg':'#ffffff','actorBkg':'#4CAF50','actorBorder':'#2e7d32','actorTextColor':'#fff','actorLineColor':'#333','noteBkgColor':'#fff3e0','noteTextColor':'#000','noteBorderColor':'#f57c00','signalColor':'#333','signalTextColor':'#000','labelBoxBkgColor':'#e3f2fd','labelTextColor':'#000','loopTextColor':'#000','activationBkgColor':'#ffeb3b','activationBorderColor':'#f57f17','sequenceNumberColor':'#000'}}}%%
+%%{init: {'theme':'base', 'themeVariables': {'background':'#e8f5e9','mainBkg':'#e8f5e9','actorBkg':'#4CAF50','actorBorder':'#2e7d32','actorTextColor':'#fff','actorLineColor':'#2e7d32','noteBkgColor':'#c8e6c9','noteTextColor':'#000','noteBorderColor':'#2e7d32','signalColor':'#000','signalTextColor':'#000','labelBoxBkgColor':'#c8e6c9','labelTextColor':'#000','loopTextColor':'#000','activationBkgColor':'#ffeb3b','activationBorderColor':'#f57f17','sequenceNumberColor':'#fff'}}}%%
 sequenceDiagram
     autonumber
     participant U as 👤 Utilisateur
@@ -499,7 +499,7 @@ sequenceDiagram
 ### Scénario 2 : RAG avec AnythingLLM
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': {'background':'#ffffff','mainBkg':'#ffffff','actorBkg':'#9C27B0','actorBorder':'#6a1b7f','actorTextColor':'#fff','actorLineColor':'#333','noteBkgColor':'#e8f5e9','noteTextColor':'#000','noteBorderColor':'#4caf50','signalColor':'#333','signalTextColor':'#000','labelBoxBkgColor':'#fff3e0','labelTextColor':'#000','loopTextColor':'#000','activationBkgColor':'#ffeb3b','activationBorderColor':'#f57f17','sequenceNumberColor':'#000'}}}%%
+%%{init: {'theme':'base', 'themeVariables': {'background':'#f3e5f5','mainBkg':'#f3e5f5','actorBkg':'#9C27B0','actorBorder':'#6a1b7f','actorTextColor':'#fff','actorLineColor':'#6a1b7f','noteBkgColor':'#e1bee7','noteTextColor':'#000','noteBorderColor':'#6a1b7f','signalColor':'#000','signalTextColor':'#000','labelBoxBkgColor':'#e1bee7','labelTextColor':'#000','loopTextColor':'#000','activationBkgColor':'#ffeb3b','activationBorderColor':'#f57f17','sequenceNumberColor':'#fff'}}}%%
 sequenceDiagram
     autonumber
     participant U as 👤 User
@@ -537,7 +537,7 @@ sequenceDiagram
 ### Scénario 3 : Workflow n8n
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': {'background':'#ffffff','mainBkg':'#ffffff','actorBkg':'#FF5722','actorBorder':'#cc3d18','actorTextColor':'#fff','actorLineColor':'#333','noteBkgColor':'#fff3e0','noteTextColor':'#000','noteBorderColor':'#ff9800','signalColor':'#333','signalTextColor':'#000','labelBoxBkgColor':'#e3f2fd','labelTextColor':'#000','loopTextColor':'#000','activationBkgColor':'#ffeb3b','activationBorderColor':'#f57f17','sequenceNumberColor':'#000'}}}%%
+%%{init: {'theme':'base', 'themeVariables': {'background':'#fff3e0','mainBkg':'#fff3e0','actorBkg':'#FF5722','actorBorder':'#cc3d18','actorTextColor':'#fff','actorLineColor':'#cc3d18','noteBkgColor':'#ffe0b2','noteTextColor':'#000','noteBorderColor':'#cc3d18','signalColor':'#000','signalTextColor':'#000','labelBoxBkgColor':'#ffe0b2','labelTextColor':'#000','loopTextColor':'#000','activationBkgColor':'#ffeb3b','activationBorderColor':'#f57f17','sequenceNumberColor':'#fff'}}}%%
 sequenceDiagram
     autonumber
     participant W as 🌐 Webhook
