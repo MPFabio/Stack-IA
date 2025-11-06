@@ -16,7 +16,7 @@
 Stack-IA est une architecture microservices complète pour l'intelligence artificielle locale, orchestrée via Docker Compose et Traefik.
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#326ce5','primaryTextColor':'#fff','primaryBorderColor':'#fff','lineColor':'#666','secondaryColor':'#ff6b6b','tertiaryColor':'#76b900'}}}%%
+%%{init: {'theme':'base', 'themeVariables': {'background':'#e3f2fd','mainBkg':'#e3f2fd','primaryTextColor':'#000','secondaryTextColor':'#000','tertiaryTextColor':'#000','lineColor':'#000','textColor':'#000'}}}%%
 graph TB
     subgraph LAYER1["<b>🌐 Couche Accès - Port 80/443</b>"]
         TRAEFIK["<b>Traefik</b><br/>Reverse Proxy<br/>🔀"]
@@ -118,7 +118,7 @@ graph TB
 **Rôle** : Moteur d'inférence pour les modèles LLM
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'16px', 'lineColor':'#333', 'primaryColor':'#fff', 'primaryBorderColor':'#333'}}}%%
+%%{init: {'theme':'base', 'themeVariables': {'background':'#ffe0b2','mainBkg':'#ffe0b2','primaryTextColor':'#000','secondaryTextColor':'#000','tertiaryTextColor':'#000','lineColor':'#000','textColor':'#000'}}}%%
 graph LR
     A["🌐 Client Request"] --> B["🦙 Ollama API<br/>:11434"]
     B --> C{"GPU<br/>Available?"}
@@ -317,7 +317,7 @@ erDiagram
 ## Architecture Réseau
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'14px'}}}%%
+%%{init: {'theme':'base', 'themeVariables': {'background':'#e8f5e9','mainBkg':'#e8f5e9','primaryTextColor':'#000','secondaryTextColor':'#000','tertiaryTextColor':'#000','lineColor':'#000','textColor':'#000'}}}%%
 graph LR
     subgraph EXT["🌍 Réseau Externe"]
         CLIENT["👤 Client<br/>Browser"]
@@ -400,7 +400,7 @@ graph LR
 ## Persistance des Données
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'13px'}}}%%
+%%{init: {'theme':'base', 'themeVariables': {'background':'#fff3e0','mainBkg':'#fff3e0','primaryTextColor':'#000','secondaryTextColor':'#000','tertiaryTextColor':'#000','lineColor':'#000','textColor':'#000'}}}%%
 graph TB
     subgraph VOLUMES["💿 Docker Volumes"]
         direction TB
@@ -775,7 +775,7 @@ Informations disponibles :
 ### Diagramme 1 : Flux Utilisateur vers Services
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'14px'}}}%%
+%%{init: {'theme':'base', 'themeVariables': {'background':'#f3e5f5','mainBkg':'#f3e5f5','primaryTextColor':'#000','secondaryTextColor':'#000','tertiaryTextColor':'#000','lineColor':'#000','textColor':'#000'}}}%%
 graph TB
     USER["👤 Utilisateur"]
     BROWSER["🌐 Navigateur"]
@@ -816,7 +816,7 @@ graph TB
 ### Diagramme 2 : Communication Backend
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'14px'}}}%%
+%%{init: {'theme':'base', 'themeVariables': {'background':'#e1f5fe','mainBkg':'#e1f5fe','primaryTextColor':'#000','secondaryTextColor':'#000','tertiaryTextColor':'#000','lineColor':'#000','textColor':'#000'}}}%%
 graph LR
     subgraph UI["🖥️ Frontend"]
         WEBUI["Open WebUI"]
@@ -861,7 +861,7 @@ graph LR
 ### Diagramme 3 : Infrastructure & Persistance
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'14px'}}}%%
+%%{init: {'theme':'base', 'themeVariables': {'background':'#fff9c4','mainBkg':'#fff9c4','primaryTextColor':'#000','secondaryTextColor':'#000','tertiaryTextColor':'#000','lineColor':'#000','textColor':'#000'}}}%%
 graph TB
     subgraph COMPUTE["⚡ Compute"]
         GPU["🚀 NVIDIA GPU<br/>CUDA Cores"]
@@ -921,7 +921,7 @@ graph TB
 ### Diagramme 4 : Architecture Réseau Docker
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'14px'}}}%%
+%%{init: {'theme':'base', 'themeVariables': {'background':'#e0f2f1','mainBkg':'#e0f2f1','primaryTextColor':'#000','secondaryTextColor':'#000','tertiaryTextColor':'#000','lineColor':'#000','textColor':'#000'}}}%%
 graph TB
     EXTERNAL["🌍 Internet<br/>Client"]
     
